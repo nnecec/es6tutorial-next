@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useConfig } from 'nextra-theme-docs'
 
 /** @type {import('nextra-theme-docs').DocsThemeConfig} */
 export default {
@@ -18,6 +19,27 @@ export default {
     link: 'https://github.com/nnecec/es6tutorial-next',
   },
   editLink: false,
+  head: () => {
+    const { frontMatter, title } = useConfig()
+
+    return (
+      <>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <title>{`${frontMatter.title || title} - ES6 教程`}</title>
+        <meta
+          property="og:title"
+          content={`ES6 教程 ${frontMatter.title || title} `}
+        />
+        <meta
+          property="og:description"
+          content="JavaScript,ES6,ES2020,ES2024 入门教程"
+        />
+      </>
+    )
+  },
   footer: {
     content: (
       <div>
